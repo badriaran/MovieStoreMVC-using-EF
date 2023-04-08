@@ -12,7 +12,7 @@ using MovieStoreMVC.Models.Domain;
 namespace MovieStoreMVC.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230408111725_initialCatalog")]
+    [Migration("20230408113953_initialCatalog")]
     partial class initialCatalog
     {
         /// <inheritdoc />
@@ -236,7 +236,6 @@ namespace MovieStoreMVC.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("GenreName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

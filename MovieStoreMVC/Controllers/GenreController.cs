@@ -33,7 +33,6 @@ namespace MovieStoreMVC.Controllers
                 TempData["msg"] = "Error on server side";
                 return View();
             }
-            return View();
         }
 
         public IActionResult Edit(int id)
