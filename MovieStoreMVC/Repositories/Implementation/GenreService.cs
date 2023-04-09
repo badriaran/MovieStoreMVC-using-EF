@@ -1,7 +1,8 @@
-﻿using MovieStoreMVC.Models.Domain;
-using MovieStoreMVC.Repositories.Abstract;
+﻿using MovieStoreMvc.Repositories.Abstract;
+using MovieStoreMVC.Models.Domain;
 
-namespace MovieStoreMVC.Repositories.Implementation
+
+namespace MovieStoreMvc.Repositories.Implementation
 {
     public class GenreService : IGenreService
     {
@@ -18,23 +19,27 @@ namespace MovieStoreMVC.Repositories.Implementation
                 ctx.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { return false; }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool Delete(int id)
         {
             try
             {
-                var data=this.GetById(id);
-                if(data == null) 
-                {
+                var data = this.GetById(id);
+                if (data == null)
                     return false;
-                }
                 ctx.Genre_Table.Remove(data);
                 ctx.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { return false; }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public Genre GetById(int id)
@@ -44,9 +49,8 @@ namespace MovieStoreMVC.Repositories.Implementation
 
         public IQueryable<Genre> List()
         {
-           var data=ctx.Genre_Table.AsQueryable();
+            var data = ctx.Genre_Table.AsQueryable();
             return data;
-
         }
 
         public bool Update(Genre model)
@@ -57,7 +61,10 @@ namespace MovieStoreMVC.Repositories.Implementation
                 ctx.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { return false; }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

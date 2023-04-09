@@ -1,16 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieStoreMvc.Repositories.Abstract;
 
-namespace MovieStoreMVC.Controllers
+namespace MovieStoreMvc.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IMovieService _movieService;
+        public HomeController(IMovieService movieService)
+        {
+            _movieService = movieService;
+        }
+        public IActionResult Index(string term = "", int currentPage = 1)
+        {
+            var movies = _movieService.List(term, true, currentPage);
+            return View(movies);
+        }
+
+        public IActionResult About()
         {
             return View();
         }
-        public IActionResult About() 
+
+        public IActionResult MovieDetail(int movieId)
         {
-            return View();
+            var movie = _movieService.GetById(movieId);
+            return View(movie);
         }
+
     }
 }

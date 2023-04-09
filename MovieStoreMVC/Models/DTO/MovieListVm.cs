@@ -1,8 +1,15 @@
-﻿using MovieStoreMVC.Models.Domain;
+﻿
+using MovieStoreMvc.Models.Domain;
 
-namespace MovieStoreMVC.Models.DTO;
 
-public class MovieListVm
+namespace MovieStoreMvc.Models.DTO
 {
-    public IQueryable<Movie> MovieList { get; set; }
+    public class MovieListVm
+    {
+        public IQueryable<Movie> MovieList { get; set; }
+        public int PageSize { get; set; }
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
+        public string? Term { get; set; }
+    }
 }

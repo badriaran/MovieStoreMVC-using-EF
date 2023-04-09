@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MovieStoreMvc.Models.DTO;
+using MovieStoreMvc.Repositories.Abstract;
 using MovieStoreMVC.Models.Domain;
 using MovieStoreMVC.Models.DTO;
-using MovieStoreMVC.Repositories.Abstract;
 using System.Security.Claims;
 
 namespace MovieStoreMvc.Repositories.Implementation

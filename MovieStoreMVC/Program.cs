@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MovieStoreMvc.Models.Domain;
+using MovieStoreMvc.Repositories.Abstract;
 using MovieStoreMvc.Repositories.Implementation;
 using MovieStoreMVC.Models.Domain;
-using MovieStoreMVC.Repositories.Abstract;
-using MovieStoreMVC.Repositories.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,19 +11,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
-builder.Services.AddScoped<IFileService,FileService>();
+builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 
-builder.Services.AddDbContext<DatabaseContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 
-
-//For Identity
-builder.Services.AddIdentity<ApplicationUser,IdentityRole>()
+// For Identity  
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<DatabaseContext>()
     .AddDefaultTokenProviders();
+
 //builder.Services.ConfigureApplicationCookie(options => options.LoginPath = "/UserAuthentication/Login");
 
+
 var app = builder.Build();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -36,6 +38,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 

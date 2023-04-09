@@ -1,7 +1,9 @@
-﻿using MovieStoreMVC.Models.Domain;
-using MovieStoreMVC.Models.DTO;
+﻿
+using MovieStoreMvc.Models.Domain;
+using MovieStoreMvc.Models.DTO;
 
-namespace MovieStoreMVC.Repositories.Abstract
+
+namespace MovieStoreMvc.Repositories.Abstract
 {
     public interface IMovieService
     {
@@ -9,7 +11,8 @@ namespace MovieStoreMVC.Repositories.Abstract
         bool Update(Movie model);
         Movie GetById(int id);
         bool Delete(int id);
-        MovieListVm List();
+        MovieListVm List(string term = "", bool paging = false, int currentPage = 0);
+        List<int> GetGenreByMovieId(int movieId);
 
     }
 }

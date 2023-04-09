@@ -1,16 +1,15 @@
-﻿using MovieStoreMVC.Repositories.Abstract;
+﻿using MovieStoreMvc.Repositories.Abstract;
 
-namespace MovieStoreMVC.Repositories.Implementation
+
+namespace MovieStoreMvc.Repositories.Implementation
 {
-    public class FileService:IFileService
+    public class FileService : IFileService
     {
         private readonly IWebHostEnvironment environment;
-        public FileService(IWebHostEnvironment Env)
+        public FileService(IWebHostEnvironment env)
         {
-            this.environment = Env; 
-            
+            this.environment = env;
         }
-
 
         public Tuple<int, string> SaveImage(IFormFile imageFile)
         {
@@ -18,17 +17,18 @@ namespace MovieStoreMVC.Repositories.Implementation
             {
                 var wwwPath = this.environment.WebRootPath;
                 var path = Path.Combine(wwwPath, "Uploads");
-                if(!Directory.Exists(path))
+                if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
                 }
-                //check the allowed extensions
+
+                // Check the allowed extenstions
                 var ext = Path.GetExtension(imageFile.FileName);
-                var allowedExtension = new string[] { ".jpg", ".png", ".jpge" };
-                if(!allowedExtension.Contains(ext))
+                var allowedExtensions = new string[] { ".jpg", ".png", ".jpeg" };
+                if (!allowedExtensions.Contains(ext))
                 {
-                    string msg = string.Format("Only {0} extensions are allowed", string.Join(",",allowedExtension) );
-                        return new Tuple<int, string>(0, msg);
+                    string msg = string.Format("Only {0} extensions are allowed", string.Join(",", allowedExtensions));
+                    return new Tuple<int, string>(0, msg);
                 }
                 string uniqueString = Guid.NewGuid().ToString();
                 // we are trying to create a unique filename here
@@ -43,27 +43,25 @@ namespace MovieStoreMVC.Repositories.Implementation
             {
                 return new Tuple<int, string>(0, "Error has occured");
             }
-
         }
+
         public bool DeleteImage(string imageFileName)
         {
             try
             {
-                var wwwPath= this.environment.WebRootPath;
-                var path = Path.Combine(wwwPath, "Uploads", imageFileName);
-                if(System.IO.File.Exists(path))
+                var wwwPath = this.environment.WebRootPath;
+                var path = Path.Combine(wwwPath, "Uploads\\", imageFileName);
+                if (System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);
                     return true;
                 }
                 return false;
-
             }
             catch (Exception ex)
             {
                 return false;
-                
-            } 
+            }
         }
     }
 }

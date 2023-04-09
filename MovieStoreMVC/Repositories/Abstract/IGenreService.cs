@@ -1,7 +1,7 @@
-﻿using MovieStoreMVC.Models.Domain;
-using MovieStoreMVC.Models.DTO;
+﻿
+using MovieStoreMVC.Models.Domain;
 
-namespace MovieStoreMVC.Repositories.Abstract
+namespace MovieStoreMvc.Repositories.Abstract
 {
     public interface IGenreService
     {
