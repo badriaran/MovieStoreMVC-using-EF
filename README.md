@@ -8,6 +8,7 @@ gives the names of director, cast info, upload a cover image of movie and so on.
 here,  IndentityFramework is used to maintain a Adminrole.. One can directly login using
 
 Username: admin
+
 password: Admin@123
 
 which is directly assigned in the UserAuthenticationController in Register Action instead of asking and registering from the views(webPage).
